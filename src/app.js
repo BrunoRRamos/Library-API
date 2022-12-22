@@ -1,8 +1,13 @@
 import express from "express";
-import db from "./config/dbConnect";
+import db from "./config/dbConnect.js";
 
 //Conecta o log do banco com o terminal
 db.on("error", console.log.bind(console, "Erro de conexão"));
+
+//Inicia a conexão com o banco
+db.once("open", () => {
+    console.log("Connected to DataBase")
+});
 
 //Instancia o Express
 const app = express();
