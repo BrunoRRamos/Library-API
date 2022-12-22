@@ -1,23 +1,11 @@
-//Importa a Lib http
-const http = require("http")
+//Importanto arquivo que comtem o servidor do Express
+import app from "./src/app.js"
 
 //Cria uma porta para o Server ouvir
-const port = 3000;
-
-//Cria as possiveis rotas do Server
-const routes = {
-    '/': 'Batata',
-    '/books': 'Sucess',
-    '/authors': 'Sucess - Author'
-}
-
-//Cria o servidor com req (requisição) e res (resposta) de acordo com a url
-const server = http.createServer((req, res) => {
-    res.writeHead(200, {"Content-type": "text/plain"});
-    res.end(routes[req.url]);
-});
+//Pode ser a porta da produção ou a porta 3000
+const port = process.env.PORT || 3000;
 
 //Inicia o servidor
-server.listen(port, () => {
+app.listen(port, () => {
     console.log(`Server listening: http://localhost:${port}`)
 });
