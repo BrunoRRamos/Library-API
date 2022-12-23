@@ -1,5 +1,6 @@
 import express from "express";
 import db from "./config/dbConnect.js";
+import books from "./models/Book.js"
 
 //Conecta o log do banco com o terminal
 db.on("error", console.log.bind(console, "Erro de conexão"));
@@ -15,10 +16,10 @@ const app = express();
 //Faz com que o app interprete arquivos .JASON
 app.use(express.json());
 
-const books = [
-    {id: 1, "Title": "Clean Code"},
-    {id: 2, "Title": "Software Codes"}
-]
+//const books = [
+//   {id: 1, "Title": "Clean Code"},
+//   {id: 2, "Title": "Software Codes"}
+//]
 
 //Cada rota tem seu GET
 //GET para página inicial
@@ -26,9 +27,11 @@ app.get('/', (req, res) => {
     res.status(200).send("Batata");
 });
 
-//GET para a relação de livros cadastrados
+//GET para a relação dos livros cadastrados
 app.get('/books', (req, res) => {
-    res.status(200).json(books);
+    books.find((err, books) => {
+        res.status(200).json(books);
+    })
 });
 
 //GET de um livro pelo ID
