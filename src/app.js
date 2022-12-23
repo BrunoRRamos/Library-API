@@ -1,6 +1,7 @@
 import express from "express";
 import db from "./config/dbConnect.js";
 import books from "./models/Book.js"
+import routes from "./routes/index.js";
 
 //Conecta o log do banco com o terminal
 db.on("error", console.log.bind(console, "Erro de conexão"));
@@ -16,28 +17,15 @@ const app = express();
 //Faz com que o app interprete arquivos .JASON
 app.use(express.json());
 
-//const books = [
-//   {id: 1, "Title": "Clean Code"},
-//   {id: 2, "Title": "Software Codes"}
-//]
-
-//Cada rota tem seu GET
-//GET para página inicial
-app.get('/', (req, res) => {
-    res.status(200).send("Batata");
-});
-
-//GET para a relação dos livros cadastrados
-app.get('/books', (req, res) => {
-    books.find((err, books) => {
-        res.status(200).json(books);
-    })
-});
+//Direciona para a rota correta
+routes(app);
 
 //GET de um livro pelo ID
 app.get('/books/:id', (req, res) => {
-    let index = searchId(req.params.id)
-    res.status(200).json(books[index]);
+    const id = req.body.id;
+    books.findById((err, books) => {
+        res.status(200).json(books[id]);
+    })
 });
 
 //POST para criar um novo Livro
@@ -61,9 +49,5 @@ app.delete('/books/:id', (req, res) => {
     books.pop(index);
     res.send(`Book ${id} removed !`);
 });
-
-function searchId(id) {
-    return books.findIndex(book => book.id == id);
-}
 
 export default app;
