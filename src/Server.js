@@ -1,5 +1,5 @@
 //Importanto arquivo que comtem o servidor do Express
-import app from "./src/app.js"
+import app from "./app.js"
 
 //Cria uma porta para o Server ouvir
 //Pode ser a porta da produção ou a porta 3000
