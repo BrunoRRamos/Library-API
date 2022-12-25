@@ -1,6 +1,5 @@
 import express from "express";
 import db from "./config/dbConnect.js";
-import books from "./models/Book.js"
 import routes from "./routes/index.js";
 
 //Conecta o log do banco com o terminal
