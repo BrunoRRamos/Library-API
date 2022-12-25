@@ -28,13 +28,6 @@ app.get('/books/:id', (req, res) => {
     })
 });
 
-//POST para criar um novo Livro
-app.post('/books', (req, res) => {
-    books.push(req.body);
-    //Status 201 de POST realizado
-    res.status(201).send("POST Sucess")
-});
-
 //PUT atualiza o título de um livro já cadastrado (pelo ID)
 app.put('/books/:id', (req, res) => {
     let index = searchId(req.params.id);
