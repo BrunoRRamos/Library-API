@@ -20,27 +20,4 @@ app.use(express.json());
 //Direciona para a rota correta
 routes(app);
 
-//GET de um livro pelo ID
-app.get('/books/:id', (req, res) => {
-    const id = req.body.id;
-    books.findById((err, books) => {
-        res.status(200).json(books[id]);
-    })
-});
-
-//PUT atualiza o título de um livro já cadastrado (pelo ID)
-app.put('/books/:id', (req, res) => {
-    let index = searchId(req.params.id);
-    books[index].Title = req.body.Title;
-    res.json(books);
-});
-
-//DELETE remove um livro oelo ID dele
-app.delete('/books/:id', (req, res) => {
-    let {id} = req.params;
-    let index = searchId(id);
-    books.pop(index);
-    res.send(`Book ${id} removed !`);
-});
-
 export default app;
