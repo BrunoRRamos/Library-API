@@ -19,7 +19,7 @@ class BookController {
 
     //Implementa POST de um livro
     static createBook = (req, res) => {
-        let book = new books(req.body)
+        let book = new books(req.body);
         book.save((err) => {
             err ? res.status(500).send(`Message: ${err.message} - POST error`) : res.status(201).send(`Sucess POST`)
         });
