@@ -12,7 +12,7 @@ const routes = (app) => {
     app.use(
         express.json(),
         booksRoutes
-    )
+    );
 }
 
 export default routes;
