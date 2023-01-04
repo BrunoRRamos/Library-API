@@ -1,5 +1,6 @@
 import express from "express";
 import booksRoutes from "./booksRoutes.js";
+import authorsRoutes from "./authorsRoutes.js"
 
 const routes = (app) => {
 
@@ -11,7 +12,8 @@ const routes = (app) => {
     //Armazena as rotas diponiveis
     app.use(
         express.json(),
-        booksRoutes
+        booksRoutes,
+        authorsRoutes
     )
 }
 
