@@ -2,9 +2,15 @@ import books from "../models/Book.js";
 
 //Cria os métodos referentes a livro
 class BookController {
+
     //Implementa GET dos Livros
+    //Composição de documentos
     static listBooks = (req, res) => {
-        books.find((err, books) => {
+        books.find()
+        //Populate busca a referencia para o Documento 
+        .populate("author")
+        //Execute executa o bloco de código da resposta
+        .exec((err, books) => {
             res.status(200).json(books);
         });
     }
@@ -12,7 +18,9 @@ class BookController {
     //Implementa o GET pelo ID
     static getById = (req, res) => {
         const id = req.params.id;
-        books.findById(id, (err, books) => {
+        books.findById(id)
+        .populate("author", "name")
+        .exec((err, books) => {
             err ? res.status(400).send({message: `${err.message} - Book Not Found - Invalid ID`}) : res.status(200).send(books);
         });
     }
@@ -40,6 +48,15 @@ class BookController {
             err ? res.status(500).send(`Message: ${err.message} - DELETE error`) : res.status(200).send(`Sucess DELETE`)
         });
     }
+
+    //Lista Livros pela Editora
+    static listBooksByCompany = (req, res) => {
+        const publishCompany = req.query.publishCompany;
+        books.find({"publishCompany": publishCompany}, {}, (err, books) => {
+            res.status(200).send(books)
+        });
+    }
+
 }
 
 export default BookController;

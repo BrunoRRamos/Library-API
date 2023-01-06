@@ -12,7 +12,8 @@ const routes = (app) => {
     //Armazena as rotas diponiveis
     app.use(
         express.json(),
-        booksRoutes
+        booksRoutes,
+        authorsRoutes
     )
 }
 
