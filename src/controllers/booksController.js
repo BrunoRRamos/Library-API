@@ -9,7 +9,7 @@ class BookController {
         books.find()
         //Populate busca a referencia para o Documento 
         .populate("author")
-        .populate("publishCompany", "name")
+        .populate("publishCompany")
         //Execute executa o bloco de código da resposta
         .exec((err, books) => {
             res.status(200).json(books);
@@ -22,7 +22,7 @@ class BookController {
 
         books.findById(id)
         .populate("author")
-        .populate("publishCompany", "name")
+        .populate("publishCompany")
         .exec((err, books) => {
             err ? res.status(400).send({message: `${err.message} - Book Not Found - Invalid ID`}) : res.status(200).send(books);
         });
