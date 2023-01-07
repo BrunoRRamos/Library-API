@@ -11,8 +11,7 @@ const router = express.Router();
 //Cria PUT para a rota /books/:id
 router
     .get("/books", BookController.listBooks)
-    .get("/books/search", BookController.listBooksByCompany)
-    .get("/books/:id", BookController.getById)
+    .get("/books/:id", BookController.getBookById)
     .post("/books", BookController.createBook)
     .put("/books/:id", BookController.updateBook)
     .delete("/books/:id", BookController.deleteBook)
