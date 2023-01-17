@@ -4,7 +4,7 @@ class AuthorController {
 
     static listAuthors = (req, res) => {
         authors.find((err, author) => {
-            res.status(200).json(author)
+            res.status(200).json(author);
         });
     }
 
