@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv"
+dotenv.config();
 
 //Cria um modelo de documento no Banco
 const bookShema = new mongoose.Schema({
